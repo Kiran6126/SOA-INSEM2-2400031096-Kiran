@@ -1,0 +1,11 @@
+spring.application.name=TOURIST-SERVICE
+
+# Port 0 means: let the OS assign a free port automatically
+server.port=0
+
+# Register with Eureka Server
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+
+# Generate a unique instance ID for each running instance so Eureka
+# treats them as separate instances instead of overwriting each other.
+eureka.instance.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}

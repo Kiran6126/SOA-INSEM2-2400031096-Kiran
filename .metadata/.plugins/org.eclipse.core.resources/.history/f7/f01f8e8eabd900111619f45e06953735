@@ -1,0 +1,18 @@
+server.port=8080
+
+spring.application.name=API-GATEWAY
+
+# Register Gateway with Eureka so it can discover other services
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+
+# -------------------------------------------------------
+# Route Configuration
+# -------------------------------------------------------
+# Route ID: tourist-service-route
+# Path predicate: any request to /tourists/**
+# URI: lb://TOURIST-SERVICE means use LoadBalancer to pick
+#       one of the registered TOURIST-SERVICE instances
+# -------------------------------------------------------
+spring.cloud.gateway.routes[0].id=tourist-service-route
+spring.cloud.gateway.routes[0].uri=lb://TOURIST-SERVICE
+spring.cloud.gateway.routes[0].predicates[0]=Path=/tourists/**
